@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import './Nav.css';
 
 /**Shows navigation bar
  * 
@@ -12,10 +13,12 @@ import { Link } from "react-router-dom";
  */
 function Nav() {
   return (
-    <div>
-      <Link to='/'>Jobly</Link>
-      <Link to='/companies'>Companies</Link>
-      <Link to='/jobs'>Jobs</Link>
+    <div className='Nav'>
+      <Link to='/' className='Nav-Link'> Jobly </Link>
+      <ul className='Nav-ul'>
+        <li><Link to='/companies' className='Nav-Link'> Companies </Link></li>
+        <li><Link to='/jobs' className='Nav-Link'> Jobs </Link></li>
+      </ul>
     </div>
   );
 }

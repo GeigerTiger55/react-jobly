@@ -1,0 +1,8 @@
+.Nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Nav-ul {
+    list-style: none;
+}
