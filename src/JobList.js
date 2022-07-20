@@ -73,7 +73,6 @@ function JobList() {
 
   return (
     <div>
-      <header>JOB LISTER</header>
       <SearchForm searchFunction={searchJobs} searchField={"title"} />
       <JobCardList jobs={jobs.data} />
     </div>
