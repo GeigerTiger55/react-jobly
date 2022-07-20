@@ -21,7 +21,6 @@ function CompanyList() {
     data: [],
     isLoading: true,
   });
-  // FIXME: The searchTerms can't be an empty string per the backend.
   const [searchTerms, setSearchTerms] = useState();
   console.log("CompanyList", companies, searchTerms);
 
@@ -49,12 +48,14 @@ function CompanyList() {
      * Return the same obj ref with all keys whose value '' removed.
      */
     function _rmvKey(obj) {
-      for (let key in obj) {
-        if (obj[key] === '') {
-          delete obj[key];
+      const newObj = {...obj};
+      for (let key in newObj) {
+        if (newObj[key] === '') {
+          delete newObj[key];
         }
       }
-      return obj;
+      // ChangeLog Going to update the obj with new reference.
+      return newObj;
     }
 
     //Filter out keys with '' values.
