@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Homepage from './Homepage';
 import CompanyList from './CompanyList';
 import CompanyDetail from './CompanyDetail';
@@ -15,16 +15,16 @@ import JobList from './JobList';
  * App -> RoutesList -> { Homepage, CompanyList, CompanyDetail, JobList }
  */
 
- function RoutesList(){
+function RoutesList() {
   return (
-  <Routes>
-    <Route path='/companies' element={<CompanyList />} />
-    <Route path='/companies/:company' element={<CompanyDetail />} />
-    <Route path='/jobs' element={<JobList />} />
-    <Route path='/*' element={<Homepage />} />
-    {/* TODO: Seperate out / for homepage & * for catch all Navigate Homepagfe */}
-    {/* TODO: Import Navigate */}
-  </Routes>
+    <Routes>
+      <Route path='/' element={<Homepage />} />
+      <Route path='/companies' element={<CompanyList />} />
+      {/* TODO: Catch companies that don't exist and nav to homepage? */}
+      <Route path='/companies/:company' element={<CompanyDetail />} />
+      <Route path='/jobs' element={<JobList />} />
+      <Route path='*' element={<Navigate to='/'/>}/>
+    </Routes>
   );
 }
 

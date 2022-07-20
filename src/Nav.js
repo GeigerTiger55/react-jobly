@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import './Nav.css';
 
 /**Shows navigation bar
- * 
+ *
  * Props:
  * - none
- * 
+ *
  * State:
  * - none
- * 
+ *
  * App -> Nav
  */
 function Nav() {

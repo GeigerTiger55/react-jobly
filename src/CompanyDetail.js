@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import JoblyApi from './api';
 import JobCardList from './JobCardList';
 
-/** CompanyDetail shows company info and jobs posted for company *
+/** CompanyDetail shows company info and jobs posted for company
  *
  *  Props: None
  *
@@ -27,10 +27,6 @@ function CompanyDetail() {
   });
   const { company } = useParams();
 
-
-
-
-  //Use Effect
   useEffect(function fetchCompanyDetailsOnMount() {
     async function fetchCompanyDetails() {
       const companyResult = await JoblyApi.getCompany(company);
@@ -52,23 +48,9 @@ function CompanyDetail() {
         </p>
       </div>
 
-      <JobCardList jobs={companyDetails.data.jobs}/>
+      <JobCardList jobs={companyDetails.data.jobs} />
     </div>
   );
 }
 
 export default CompanyDetail;
-
-//THINK ABOUT THINGS
-// param - company (handle)
-//
-// state - companyData:
-//      isLoading:
-//      data: { handle, name, description, numEmployees, logoUrl, jobs }
-//      jobs is [{ id, title, salary, equity }, ...]
-//
-// useEffect to get company data (axios call from JoblyApi)
-//    only run on mount, call setCompanyData(results from Axios)
-//
-// return company details (copy company card structure)
-//        <JobCardList jobs={company.data.jobs} />

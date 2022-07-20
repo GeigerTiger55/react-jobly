@@ -8,16 +8,12 @@ import JobCard from './JobCard';
  * {CompanyDetail, JobList} -> JobCardList -> JobCard
  */
 
-function JobCardList({ jobs=[] }) {
+function JobCardList({ jobs = [] }) {
   return (
     <div>
-      {jobs.map(job=> <JobCard key={job.id} job={job} />)}
+      {jobs.map(job => <JobCard key={job.id} job={job} />)}
     </div>
   );
 }
 
 export default JobCardList;
-
-//THINKING SPACE
-// Props: jobs array
-// map jobs array to JobCard

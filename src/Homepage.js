@@ -2,7 +2,7 @@
  *
  * Props:
  * - none
- * 
+ *
  * State:
  * - none
  *

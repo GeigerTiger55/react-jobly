@@ -10,8 +10,11 @@ import { useState, useEffect } from 'react';
  * Props: None
  *
  * State:
- * - companies: [{company}, ...]
- * - searchTerms
+ * - companies: {
+    data: [{company},...],
+    isLoading: true,
+  }
+ * - searchTerms: {}
  *
  * Routes -> CompanyList -> { SearchForm, CompanyCard }
  */
@@ -22,12 +25,12 @@ function CompanyList() {
     isLoading: true,
   });
   const [searchTerms, setSearchTerms] = useState();
-  console.log("CompanyList", companies, searchTerms);
+  // console.log("CompanyList", companies, searchTerms);
 
 
   useEffect(function fetchCompaniesOnSearchTermsChange() {
     async function fetchCompanies() {
-      const companiesResult = await JoblyApi.getCompanies(searchTerms)
+      const companiesResult = await JoblyApi.getCompanies(searchTerms);
       setCompanies({
         data: companiesResult,
         isLoading: false
@@ -45,16 +48,15 @@ function CompanyList() {
     // console.log("searchCompanies",searchParams);
 
     /**Function _rmvKey takes an obj as parameter
-     * Return the same obj ref with all keys whose value '' removed.
+     * Return a new obj ref with all keys whose value '' removed.
      */
     function _rmvKey(obj) {
-      const newObj = {...obj};
+      const newObj = { ...obj };
       for (let key in newObj) {
         if (newObj[key] === '') {
           delete newObj[key];
         }
       }
-      // ChangeLog Going to update the obj with new reference.
       return newObj;
     }
 
@@ -63,7 +65,6 @@ function CompanyList() {
 
     setSearchTerms(searchParams);
   }
-
 
   return (
     <div>
@@ -82,8 +83,3 @@ function CompanyList() {
 }
 
 export default CompanyList;
-
-
-// THinking Space:
-// Have to get the props
-// Map the props to create

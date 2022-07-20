@@ -11,7 +11,9 @@ import { Link } from 'react-router-dom';
 const TEST_COMPANY = {
   handle: "anderson-arias-morrow",
   name: "Anderson, Arias and Morrow",
-  description: "Somebody program how I. Face give away discussion view act inside. Your official relationship administration here.",
+  description: ("Somebody program how I. " +
+  "Face give away discussion view act inside. " +
+  "Your official relationship administration here."),
   numEmployees: 245,
   logoUrl: "/logos/logo3.png"
 };
@@ -24,10 +26,10 @@ function CompanyCard({ company = TEST_COMPANY }) {
         <div className='CompanyCard-name'>{company.name}
           {company.logoUrl
             && <img src={company.logoUrl}
-                    alt={company.name}
-                    className='CompanyCard-img' />
+              alt={company.name}
+              className='CompanyCard-img' />
           }
-            </div>
+        </div>
         <p className='CompanyCard-description'>{company.description}</p>
       </div>
     </Link>
@@ -35,24 +37,3 @@ function CompanyCard({ company = TEST_COMPANY }) {
 }
 
 export default CompanyCard;
-
-
-// Clair's Thinking Space
-/**
- * for showing detail on a company
- * Displays the name, description, logo URL.
- *
- * Added the logos folder to public folder from a solution (Which?)
- *
- *
- * LogoUrl
- *
- * Reference:
- * 	{
-      "handle": "anderson-arias-morrow",
-      "name": "Anderson, Arias and Morrow",
-      "description": "Somebody program how I. Face give away discussion view act inside. Your official relationship administration here.",
-      "numEmployees": 245,
-      "logoUrl": "/logos/logo3.png"
-    }
- */

@@ -9,8 +9,11 @@ import JoblyApi from './api';
  *  Props: none
  *
  *  State:
- *  - jobs: [{job},...]
- *  - searchTerms
+ *  - jobs: {
+    data: [{job},...],
+    isLoading: true,
+    }
+ *  - searchTerms: {title}
  *
  *  Routes -> JobList -> { JobCardList, SearchForm }
  */
@@ -31,7 +34,6 @@ function JobList() {
         isLoading: false
       });
     })();
-    //Clair tries crazy syntax UwU
     // fetchJobs();
   }, [searchTerms]);
 
@@ -47,7 +49,7 @@ function JobList() {
     //TODO: Move _rmvKey to a helperFunc file.
     // Same Func present in CompanyList
     /**Function _rmvKey takes an obj as parameter
-     * Return the same obj ref with all keys whose value '' removed.
+     * Return a new obj ref with all keys whose value '' removed.
      */
     function _rmvKey(obj) {
       const newObj = { ...obj };
@@ -56,7 +58,6 @@ function JobList() {
           delete newObj[key];
         }
       }
-      // ChangeLog Going to update the obj with new reference.
       return newObj;
     }
 
@@ -65,11 +66,6 @@ function JobList() {
 
     setSearchTerms(searchParams);
   }
-
-  // const jobsList = JoblyApi.getJobs({ title: "camera" });
-  // console.log(jobsList);
-
-
 
   return (
     <div>
