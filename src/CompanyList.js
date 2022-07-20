@@ -2,7 +2,7 @@ import CompanyCard from './CompanyCard';
 import SearchForm from './SearchForm';
 import JoblyApi from './api';
 
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 
 /** CompanyList for displaying companies
@@ -22,8 +22,7 @@ function CompanyList() {
     isLoading: true,
   });
   const [searchTerms, setSearchTerms] = useState();
-  //TODO: setSearchTerms for searchBar
-  console.log("CompanyList",companies,searchTerms);
+  console.log("CompanyList", companies, searchTerms);
 
 
   useEffect(function fetchCompaniesOnSearchTermsChange() {
@@ -38,15 +37,24 @@ function CompanyList() {
   }, [searchTerms]);
 
 
+  //TODO: RENAME PARAM
+  // {name: 'search terms' } 
+  function searchCompanies(searchBarValue) {
+    setSearchTerms(searchBarValue);
+  }
+
+
   return (
     <div>
       <header>COMPANY LISTER</header>
-      <SearchForm />
-      {companies.isLoading ?
-      <p>Loading!</p>
-      :
-      companies.data.map(
-        company => <CompanyCard key={company.handle} company={company}/>
+      <SearchForm 
+        searchFunction={searchCompanies} 
+        searchField='name'
+      />
+      {companies.isLoading
+        ? <p>Loading!</p>
+        : companies.data.map(
+          company => <CompanyCard key={company.handle} company={company} />
         )
       }
     </div>

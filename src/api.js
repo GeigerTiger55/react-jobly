@@ -45,21 +45,31 @@ class JoblyApi {
     return res.company;
   }
 
-  /** Get details on all companies */
+  /** Get details on all companies 
+   * 
+   *  Accepts: params: {name: 'value', .... maxEmployes: value}
+   * 
+   *  Returns: companies array
+  */
 
-  static async getCompanies(name) {
+  static async getCompanies(params) {
     //const url = name ? `companies/?name=${name}` : `companies/`;
-    let res = await this.request(`companies/`, { name });
+    let res = await this.request(`companies/`, params);
     console.log(res.companies);
     return res.companies;
   }
 
 
-  /** Get details on all jobs */
+  /** Get details on all jobs 
+   * 
+   *  Accepts: params: {title: 'value', ....}
+   * 
+   *  Returns: jobs array
+  */
 
-  static async getJobs(title) {
+  static async getJobs(params) {
     //const url = title ? `jobs/?title=${title}` : `jobs/`;
-    let res = await this.request(`jobs/`, { title });
+    let res = await this.request(`jobs/`, params);
     console.log(res.jobs);
     return res.jobs;
   }
