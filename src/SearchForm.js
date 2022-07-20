@@ -13,10 +13,7 @@ import './SearchForm.css';
  * { CompanyList, JobList } -> SearchForm
  */
 
-// FIXME: Clicking the searchForm Button with an empty search bar:
-// - Should display all listings.
-// - Currently does: ???
-function SearchForm({ searchFunction, searchField='search' }) {
+function SearchForm({ searchFunction, searchField = 'search' }) {
   const [formData, setFormData] = useState({ [searchField]: "" });
 
   /** Update form input. */
@@ -31,7 +28,7 @@ function SearchForm({ searchFunction, searchField='search' }) {
   /** Submit form: call function from parent & clear inputs. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    console.log("handleSubmit",formData);
+    console.log("handleSubmit", formData);
     searchFunction(formData);
   }
 

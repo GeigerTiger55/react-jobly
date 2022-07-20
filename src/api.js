@@ -55,7 +55,7 @@ class JoblyApi {
   static async getCompanies(params) {
     //const url = name ? `companies/?name=${name}` : `companies/`;
     let res = await this.request(`companies/`, params);
-    console.log("getCompanies",res.companies);
+    console.log("getCompanies", res.companies);
     return res.companies;
   }
 

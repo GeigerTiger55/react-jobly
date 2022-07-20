@@ -18,7 +18,7 @@ import JoblyApi  from './api';
 function JobList() {
   const [jobs, setJobs] = useState([]);
 
-  const jobsList = JoblyApi.getJobs("camera");
+  const jobsList = JoblyApi.getJobs({title: "camera"});
   console.log(jobsList)
 
   return (

@@ -8,6 +8,10 @@ import JobCardList from './JobCardList';
  *  State: 
  *  - jobs: [{job},...]
  * 
+ * TODO: update state to reflect below:
+ * Company is { handle, name, description, numEmployees, logoUrl, jobs }
+ *   where jobs is [{ id, title, salary, equity }, ...]
+ * 
  *  Params:
  *  - company name
  * 

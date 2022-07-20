@@ -48,9 +48,9 @@ function CompanyList() {
     /**Function _rmvKey takes an obj as parameter
      * Return the same obj ref with all keys whose value '' removed.
      */
-    function _rmvKey(obj){
-      for(let key in obj){
-        if(obj[key] === ''){
+    function _rmvKey(obj) {
+      for (let key in obj) {
+        if (obj[key] === '') {
           delete obj[key];
         }
       }
