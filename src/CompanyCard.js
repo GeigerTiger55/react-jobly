@@ -21,11 +21,14 @@ function CompanyCard({ company = TEST_COMPANY }) {
   return (
     <Link to={`/companies/${company.handle}`} className={'Nav-Link'}>
       <div className='CompanyCard'>
-        {/* <Link to={`/companies/${company.handle}`} className={'Nav-Link'}> */}
         <div className='CompanyCard-name'>{company.name}
-          {company.logoUrl && <img src={company.logoUrl} alt={company.name} className='CompanyCard-img' />}</div>
+          {company.logoUrl
+            && <img src={company.logoUrl}
+                    alt={company.name}
+                    className='CompanyCard-img' />
+          }
+            </div>
         <p className='CompanyCard-description'>{company.description}</p>
-        {/* </Link> */}
       </div>
     </Link>
   );

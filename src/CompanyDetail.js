@@ -1,31 +1,58 @@
-import { useState, useParams } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import JoblyApi from './api';
 import JobCardList from './JobCardList';
 
-/** CompanyDetail shows company info and jobs posted for company *  
+/** CompanyDetail shows company info and jobs posted for company *
  *
- *  Props: 
- * 
- *  State: 
- *  - jobs: [{job},...]
- * 
- * TODO: update state to reflect below:
- * Company is { handle, name, description, numEmployees, logoUrl, jobs }
- *   where jobs is [{ id, title, salary, equity }, ...]
- * 
+ *  Props: None
+ *
+ *  State:
+ *  - companyDetails: {
+      data: { handle, name, description, numEmployees, logoUrl, jobs },
+              where jobs is [{ id, title, salary, equity }, ...],
+      isLoading: true
+  }
+ *
  *  Params:
  *  - company name
- * 
+ *
  *  Routes -> CompanyDetail -> JobCardList
  */
 
 function CompanyDetail() {
-  const [jobs, setJobs] = useState([]);
+  const [companyDetails, setCompanyDetails] = useState({
+    data: {},
+    isLoading: true
+  });
   const { company } = useParams();
+
+
+
+
+  //Use Effect
+  useEffect(function fetchCompanyDetailsOnMount() {
+    async function fetchCompanyDetails() {
+      const companyResult = await JoblyApi.getCompany(company);
+      setCompanyDetails({
+        data: companyResult,
+        isLoading: false
+      });
+    }
+    fetchCompanyDetails();
+  }, []);
 
   return (
     <div>
-      <header>COMPANY DETAIL AND JOBS</header>
-      <JobCardList />
+
+      <div className='CompanyDetail'>
+        <div className='CompanyDetail-name'>{companyDetails.data.name}</div>
+        <p className='CompanyDetail-description'>
+          {companyDetails.data.description}
+        </p>
+      </div>
+
+      <JobCardList jobs={companyDetails.data.jobs}/>
     </div>
   );
 }
@@ -34,13 +61,13 @@ function CompanyDetail() {
 //
 // state - companyData:
 //      isLoading:
-//      data: company info:: 
-//      { handle, name, description, numEmployees, logoUrl, jobs }
+//      data: { handle, name, description, numEmployees, logoUrl, jobs }
 //      jobs is [{ id, title, salary, equity }, ...]
 //
 // useEffect to get company data (axios call from JoblyApi)
 //    only run on mount, call setCompanyData(results from Axios)
 //
+// TODO:
 // return company details (copy company card structure)
 //        <JobCardList jobs={company.data.jobs} />
 
