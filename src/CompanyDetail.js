@@ -56,6 +56,9 @@ function CompanyDetail() {
     </div>
   );
 }
+
+export default CompanyDetail;
+
 //THINK ABOUT THINGS
 // param - company (handle)
 //
@@ -67,9 +70,5 @@ function CompanyDetail() {
 // useEffect to get company data (axios call from JoblyApi)
 //    only run on mount, call setCompanyData(results from Axios)
 //
-// TODO:
 // return company details (copy company card structure)
 //        <JobCardList jobs={company.data.jobs} />
-
-
-export default CompanyDetail;
