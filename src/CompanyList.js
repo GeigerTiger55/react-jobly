@@ -37,16 +37,17 @@ function CompanyList() {
   }, [searchTerms]);
 
 
-  //TODO: RENAME PARAM
-  // {name: 'search terms' } 
-  function searchCompanies(searchBarValue) {
-    setSearchTerms(searchBarValue);
+  /** searchCompanies sets searchTerms
+   * 
+   *  Accepts: searchParams object like { name: value, ...}
+   */
+  function searchCompanies(searchParams) {
+    setSearchTerms(searchParams);
   }
 
 
   return (
     <div>
-      <header>COMPANY LISTER</header>
       <SearchForm 
         searchFunction={searchCompanies} 
         searchField='name'
