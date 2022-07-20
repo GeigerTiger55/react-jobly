@@ -21,6 +21,7 @@ function CompanyList() {
     data: [],
     isLoading: true,
   });
+  // FIXME: The searchTerms can't be an empty string per the backend.
   const [searchTerms, setSearchTerms] = useState();
   console.log("CompanyList", companies, searchTerms);
 
@@ -38,18 +39,35 @@ function CompanyList() {
 
 
   /** searchCompanies sets searchTerms
-   * 
+   *
    *  Accepts: searchParams object like { name: value, ...}
    */
   function searchCompanies(searchParams) {
+    // console.log("searchCompanies",searchParams);
+
+    /**Function _rmvKey takes an obj as parameter
+     * Return the same obj ref with all keys whose value '' removed.
+     */
+    function _rmvKey(obj){
+      for(let key in obj){
+        if(obj[key] === ''){
+          delete obj[key];
+        }
+      }
+      return obj;
+    }
+
+    //Filter out keys with '' values.
+    searchParams = _rmvKey(searchParams);
+
     setSearchTerms(searchParams);
   }
 
 
   return (
     <div>
-      <SearchForm 
-        searchFunction={searchCompanies} 
+      <SearchForm
+        searchFunction={searchCompanies}
         searchField='name'
       />
       {companies.isLoading

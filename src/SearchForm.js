@@ -6,13 +6,16 @@ import './SearchForm.css';
  * Props:
  * - searchFunction (function to call upon submit)
  * - searchField (name of input field for search, matches API search term)
- * 
+ *
  * State:
  * - formData
  *
  * { CompanyList, JobList } -> SearchForm
  */
 
+// FIXME: Clicking the searchForm Button with an empty search bar:
+// - Should display all listings.
+// - Currently does: ???
 function SearchForm({ searchFunction, searchField='search' }) {
   const [formData, setFormData] = useState({ [searchField]: "" });
 
@@ -28,8 +31,8 @@ function SearchForm({ searchFunction, searchField='search' }) {
   /** Submit form: call function from parent & clear inputs. */
   function handleSubmit(evt) {
     evt.preventDefault();
+    console.log("handleSubmit",formData);
     searchFunction(formData);
-    setFormData({ [searchField]: "" });
   }
 
   return (

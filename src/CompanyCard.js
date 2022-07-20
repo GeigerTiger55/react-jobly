@@ -1,4 +1,5 @@
 import './CompanyCard.css';
+import { Link } from 'react-router-dom';
 
 /** CompanyCard for presenting company info
  *
@@ -16,13 +17,34 @@ import './CompanyCard.css';
 };
 
  function CompanyCard({company=TEST_COMPANY}){
+
+  //TODO: Add a link that brings a user to the CompanyDetails Page
+  // The link covers the entire component?
+  // Each CompanyCard component needs a link.
+  // The link only changes the url
+
+  // <Route path='/companies/:company' element={<CompanyDetail />} />
+
+  // Where the link needs to match the '/companies/:company'
+  // Where :company needs to match company.handle(?)
+
+  // <Link to=`/companies/${company.handle}` className='Nav-Link'>
+
+  //</Link>
+
+
+
   return (
+    <Link to={`/companies/${company.handle}`} className={'Nav-Link'}>
   <div className='CompanyCard'>
+    {/* <Link to={`/companies/${company.handle}`} className={'Nav-Link'}> */}
     <div className='CompanyCard-name'>{company.name}
     {company.logoUrl && <img src={company.logoUrl} alt={company.name} className='CompanyCard-img'/>}</div>
     <p className='CompanyCard-description'>{company.description}</p>
+    {/* </Link> */}
   </div>
-  );
+    </Link>
+    );
 }
 
 export default CompanyCard;
