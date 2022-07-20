@@ -8,7 +8,7 @@ import JobList from './JobList';
  *
  * Props:
  * - none
- * 
+ *
  * State:
  * - none
  *
@@ -22,6 +22,8 @@ import JobList from './JobList';
     <Route path='/companies/:company' element={<CompanyDetail />} />
     <Route path='/jobs' element={<JobList />} />
     <Route path='/*' element={<Homepage />} />
+    {/* TODO: Seperate out / for homepage & * for catch all Navigate Homepagfe */}
+    {/* TODO: Import Navigate */}
   </Routes>
   );
 }
