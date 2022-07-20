@@ -1,3 +1,5 @@
+import './CompanyCard.css';
+
 /** CompanyCard for presenting company info
  *
  * Props:
@@ -5,9 +7,22 @@
  *
  * CompanyList -> CompanyCard
  */
+ const TEST_COMPANY={
+  handle: "anderson-arias-morrow",
+  name: "Anderson, Arias and Morrow",
+  description: "Somebody program how I. Face give away discussion view act inside. Your official relationship administration here.",
+  numEmployees: 245,
+  logoUrl: "/logos/logo3.png"
+};
 
- function CompanyCard(){
-  return <header>COMPANY CARD</header>;
+ function CompanyCard({company=TEST_COMPANY}){
+  return (
+  <div className='CompanyCard'>
+    <div className='CompanyCard-name'>{company.name}
+    {company.logoUrl && <img src={company.logoUrl} alt={company.name} className='CompanyCard-img'/>}</div>
+    <p className='CompanyCard-description'>{company.description}</p>
+  </div>
+  );
 }
 
 export default CompanyCard;

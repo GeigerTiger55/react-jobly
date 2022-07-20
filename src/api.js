@@ -46,20 +46,20 @@ class JoblyApi {
   }
 
   /** Get details on all companies */
-  // TODO: Check on potential filters.
+
   static async getCompanies(name) {
-    const url = name? `companies/?name=${name}` : `companies/`;
-    let res = await this.request(url);
+    //const url = name ? `companies/?name=${name}` : `companies/`;
+    let res = await this.request(`companies/`, { name });
     console.log(res.companies);
     return res.companies;
   }
 
 
   /** Get details on all jobs */
-  // TODO: Check on potential filters.
-  static async getJobs(title){
-    const url = title? `jobs/?title=${title}` : `jobs/`;
-    let res = await this.request(url);
+
+  static async getJobs(title) {
+    //const url = title ? `jobs/?title=${title}` : `jobs/`;
+    let res = await this.request(`jobs/`, { title });
     console.log(res.jobs);
     return res.jobs;
   }
