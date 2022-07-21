@@ -4,6 +4,13 @@ import Nav from './Nav';
 
 import './App.css';
 
+/** App for managing a Jobs Board.
+ *
+ * Props: None
+ * State: None
+ *
+ * App -> (<Nav/> | <RoutesList/>)
+ */
 function App() {
   return (
     <div className="App">

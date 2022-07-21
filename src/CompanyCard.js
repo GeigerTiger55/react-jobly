@@ -1,5 +1,6 @@
 import './CompanyCard.css';
 import { Link } from 'react-router-dom';
+import {TEST_COMPANY} from './testFile';
 
 /** CompanyCard for presenting company info
  *
@@ -8,15 +9,6 @@ import { Link } from 'react-router-dom';
  *
  * CompanyList -> CompanyCard
  */
-const TEST_COMPANY = {
-  handle: "anderson-arias-morrow",
-  name: "Anderson, Arias and Morrow",
-  description: ("Somebody program how I. " +
-  "Face give away discussion view act inside. " +
-  "Your official relationship administration here."),
-  numEmployees: 245,
-  logoUrl: "/logos/logo3.png"
-};
 
 function CompanyCard({ company = TEST_COMPANY }) {
 

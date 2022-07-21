@@ -47,35 +47,31 @@ class JoblyApi {
 
   /** Get details on all companies
    *
-   *  Accepts: params: {name: 'value', .... maxEmployes: value}
-   *
-   *  Returns: companies array
+   *  Accepts: params: {name, minEmployees, maxEmployees}
+   *  Returns: [{handle, name, num_employees, description, logo_url},...]
   */
+  static async getCompanies({ name, minEmployees, maxEmployees }) {
 
-  static async getCompanies(params) {
-    //const url = name ? `companies/?name=${name}` : `companies/`;
-    let res = await this.request(`companies/`, params);
+    let res = await this.request(`companies/`,
+      { name, minEmployees, maxEmployees },
+    );
     console.log("getCompanies", res.companies);
     return res.companies;
   }
 
-
   /** Get details on all jobs
    *
-   *  Accepts: params: {title: 'value', ....}
-   *
-   *  Returns: jobs array
+   *  Accepts: params: {title, minSalary, hasEquity}
+   *  Returns: [{id, title, salary, equity, companyHandle, companyName},...]
   */
 
-  static async getJobs(params) {
-    //const url = title ? `jobs/?title=${title}` : `jobs/`;
-    let res = await this.request(`jobs/`, params);
+  static async getJobs({title, minSalary, hasEquity}) {
+    let res = await this.request(`jobs/`,
+      {title, minSalary, hasEquity}
+    );
     console.log(res.jobs);
     return res.jobs;
   }
-
-
-
 }
 
 export default JoblyApi;

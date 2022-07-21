@@ -24,7 +24,7 @@ function JobList() {
     isLoading: true,
   });
 
-  const [searchTerms, setSearchTerms] = useState();
+  const [searchTerms, setSearchTerms] = useState({});
 
   useEffect(function fetchJobsOnSearchTermsChange() {
     (async function fetchJobs() {
@@ -66,11 +66,13 @@ function JobList() {
 
     setSearchTerms(searchParams);
   }
-
+  console.log("Jobs.data.length",jobs.data.length);
   return (
     <div>
       <SearchForm searchFunction={searchJobs} searchField={"title"} />
-      <JobCardList jobs={jobs.data} />
+      {jobs.data.length > 0
+      ? <JobCardList jobs={jobs.data} />
+      : <p>No Jobs!</p>}
     </div>
   );
 }

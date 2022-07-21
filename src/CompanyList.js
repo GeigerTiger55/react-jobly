@@ -14,7 +14,8 @@ import { useState, useEffect } from 'react';
     data: [{company},...],
     isLoading: true,
   }
- * - searchTerms: {}
+
+  * - searchTerms: {name}
  *
  * Routes -> CompanyList -> { SearchForm, CompanyCard }
  */
@@ -24,7 +25,8 @@ function CompanyList() {
     data: [],
     isLoading: true,
   });
-  const [searchTerms, setSearchTerms] = useState();
+  //ChangeLog: Giving searchTerms a defualt value
+  const [searchTerms, setSearchTerms] = useState({});
   // console.log("CompanyList", companies, searchTerms);
 
 
@@ -49,7 +51,8 @@ function CompanyList() {
 
     /**Function _rmvKey takes an obj as parameter
      * Return a new obj ref with all keys whose value '' removed.
-     */
+     * TODO: filter obj.entries
+    */
     function _rmvKey(obj) {
       const newObj = { ...obj };
       for (let key in newObj) {

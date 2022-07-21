@@ -1,11 +1,5 @@
 import './JobCard.css';
-
-const TEST_JOB = {
-  "id": 1,
-  "title": "Conservator, furniture",
-  "salary": 110000,
-  "equity": "0"
-};
+import { TEST_JOB } from './testFile';
 
 /** JobCard for presenting job infor
  *
