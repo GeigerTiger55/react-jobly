@@ -16,8 +16,16 @@ const TEST_JOB = {
   "equity": "0"
 };
 
+const TEST_USER = {
+	"username":"TESTUSER",
+  "password":"password",
+	"firstName":"firstName",
+	"lastName":"lastName",
+	"email":"test@yahoo.com"
+}
 
-export {TEST_COMPANY, TEST_JOB};
+
+export {TEST_COMPANY, TEST_JOB, TEST_USER};
 
 
 

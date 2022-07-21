@@ -65,13 +65,41 @@ class JoblyApi {
    *  Returns: [{id, title, salary, equity, companyHandle, companyName},...]
   */
 
-  static async getJobs({title, minSalary, hasEquity}) {
+  static async getJobs({ title, minSalary, hasEquity }) {
     let res = await this.request(`jobs/`,
-      {title, minSalary, hasEquity}
+      { title, minSalary, hasEquity }
     );
     console.log(res.jobs);
     return res.jobs;
   }
+
+  /** Register User
+ * Takes {user} like { username, password, firstName, lastName, email }
+ * Returns "token value"
+ */
+  static async registerUser({ username, password, firstName, lastName, email }) {
+    let res = await this.request(`auth/register`,
+      { username, password, firstName, lastName, email },
+      'post'
+    );
+    console.log('registerUser',res.token);
+    return res.token;
+  }
+
+  /**Login User
+   * Takes {user} like { username, password }
+   * Returns "token value"
+   */
+  static async loginUser({ username, password }) {
+    let res = await this.request(`auth/token`,
+      { username, password },
+      'post'
+    );
+    console.log('loginUser',res.token);
+    return res.token;
+  }
+
 }
 
 export default JoblyApi;
+
