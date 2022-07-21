@@ -20,7 +20,6 @@ function RoutesList() {
     <Routes>
       <Route path='/' element={<Homepage />} />
       <Route path='/companies' element={<CompanyList />} />
-      {/* TODO: Catch companies that don't exist and nav to homepage? */}
       <Route path='/companies/:companyHandle' element={<CompanyDetail />} />
       <Route path='/jobs' element={<JobList />} />
       <Route path='*' element={<Navigate to='/'/>}/>

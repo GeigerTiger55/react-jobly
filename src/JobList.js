@@ -17,9 +17,7 @@ import JoblyApi from './api';
  *
  *  Routes -> JobList -> { JobCardList, SearchForm }
  */
-
-    //ChangeLog: updationg the searchJobs function
-    //rmv serachField att from <form> component
+//TODO: Refresh job list when clicking on the Jobs link from Nav bar
 
 function JobList() {
   const [jobs, setJobs] = useState({
@@ -40,24 +38,24 @@ function JobList() {
     // fetchJobs();
   }, [searchTerms]);
 
-    /** searchJobs sets searchTerms
-   *
-   *  Accepts: searchParams "string value" from form
-   *  Calls setSearchTerms with an obj like: {title:"string"}
-   */
+  /** searchJobs sets searchTerms
+ *
+ *  Accepts: searchParams "string value" from form
+ *  Calls setSearchTerms with an obj like: {title:"string"}
+ */
 
-     function searchJobs(searchQuery) {
-      const searchParams = searchQuery? {title:searchQuery} : {};
+  function searchJobs(searchQuery) {
+    const searchParams = searchQuery ? { title: searchQuery } : {};
 
-      setSearchTerms(searchParams);
-    }
+    setSearchTerms(searchParams);
+  }
 
   return (
     <div>
       <SearchForm searchFunction={searchJobs} />
       {jobs.data.length > 0
-      ? <JobCardList jobs={jobs.data} />
-      : <p>No Jobs!</p>}
+        ? <JobCardList jobs={jobs.data} />
+        : <p>No Jobs!</p>}
     </div>
   );
 }

@@ -1,9 +1,8 @@
+import { useState, useEffect } from 'react';
 import CompanyCard from './CompanyCard';
 import SearchForm from './SearchForm';
 import JoblyApi from './api';
-
-import { useState, useEffect } from 'react';
-
+import './CompanyList.css'
 
 /** CompanyList for displaying companies
  *
@@ -13,13 +12,13 @@ import { useState, useEffect } from 'react';
  * - companies: {
     data: [{company},...],
     isLoading: true,
+    errorMessages: [err,...]
   }
-
  * - searchTerms: {name}
  *
  * Routes -> CompanyList -> { SearchForm, CompanyCard }
  */
-
+  //TODO: Refresh company list when clicking on the Companies link from Nav bar
 
 function CompanyList() {
   const [companies, setCompanies] = useState({
@@ -29,7 +28,6 @@ function CompanyList() {
   //ChangeLog: Giving searchTerms a defualt value
   const [searchTerms, setSearchTerms] = useState({});
   // console.log("CompanyList", companies, searchTerms);
-
 
   useEffect(function fetchCompaniesOnSearchTermsChange() {
     async function fetchCompanies() {
@@ -41,7 +39,6 @@ function CompanyList() {
     }
     fetchCompanies();
   }, [searchTerms]);
-
 
   /** searchCompanies sets searchTerms
    *
@@ -60,12 +57,14 @@ function CompanyList() {
       <SearchForm
         searchFunction={searchCompanies}
       />
+      <div className='CompanyList-cards'>
       {companies.isLoading
         ? <p>Loading!</p>
         : companies.data.map(
           company => <CompanyCard key={company.handle} company={company} />
         )
       }
+      </div>
     </div>
   );
 }

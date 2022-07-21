@@ -11,31 +11,45 @@ import JobCardList from './JobCardList';
  *  - companyDetails: {
       data: { handle, name, description, numEmployees, logoUrl, jobs },
               where jobs is [{ id, title, salary, equity }, ...],
-      isLoading: true
+      isLoading: true,
+      errorMessages: [err,...]
   }
 
  *  Params:
  *  - companyHandle
  *
  *  Routes -> CompanyDetail -> JobCardList
+ * 
+ * Returns error messages if invalid companyHandle
  */
 
 function CompanyDetail() {
   const [companyDetails, setCompanyDetails] = useState({
     data: {},
-    isLoading: true
+    isLoading: true,
+    errorMessages: [],
   });
   const { companyHandle } = useParams();
 
-  useEffect(function fetchCompanyDetailsOnMount() {
-    // TODO: Add try/ catch to handle error, add error message to state?
+  useEffect(function fetchCompanyDetailsOnCompanyHandleChange() {
     async function fetchCompanyDetails() {
-      const companyResult = await JoblyApi.getCompany(companyHandle);
-      setCompanyDetails({
-        data: companyResult,
-        isLoading: false
-      });
+      try {
+        const companyResult = await JoblyApi.getCompany(companyHandle);
+        setCompanyDetails({
+          data: companyResult,
+          isLoading: false,
+          errorMessages: [],
+        });
+      } catch (err) {
+        console.log('ERROR', err);
+        setCompanyDetails({
+          data: {},
+          isLoading: false,
+          errorMessages: err,
+        });
+      }
     }
+
     fetchCompanyDetails();
   }, [companyHandle]);
 
@@ -58,6 +72,10 @@ function CompanyDetail() {
 
   }
 
+  if (companyDetails.errorMessages.length > 0) {
+    return <div>{companyDetails.errorMessages.map(err => <p>{err}</p>)}</div>;
+  }
+
   return (
     <div>
 
@@ -67,11 +85,7 @@ function CompanyDetail() {
           {companyDetails.data.description}
         </p>
       </div>
-
-
       {displayJobs()}
-
-
     </div>
   );
 }
