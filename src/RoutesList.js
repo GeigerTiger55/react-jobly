@@ -24,9 +24,11 @@ function RoutesList() {
   return (
     <Routes>
       <Route path='/' element={<Homepage />} />
+      {/* TODO: Make base components */}
       <Route path='/login' element={<LoginForm />} />
       <Route path='/signup' element={<SignupForm />} />
       <Route path='/profile' element={<UserProfile />} />
+
       <Route path='/companies' element={<CompanyList />} />
       <Route path='/companies/:companyHandle' element={<CompanyDetail />} />
       <Route path='/jobs' element={<JobList />} />
