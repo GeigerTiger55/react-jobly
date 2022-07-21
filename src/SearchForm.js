@@ -5,7 +5,6 @@ import './SearchForm.css';
  *
  * Props:
  * - searchFunction (function to call upon submit)
- * - searchField (name of input field for search, matches API search term)
  *
  * State:
  * - formData
@@ -13,8 +12,15 @@ import './SearchForm.css';
  * { CompanyList, JobList } -> SearchForm
  */
 
-function SearchForm({ searchFunction, searchField = 'search' }) {
-  const [formData, setFormData] = useState({ [searchField]: "" });
+/**
+ * prop
+ * formData state default to not reference searchField
+ * label - htmlFor
+ * input - id/name/value
+ */
+
+function SearchForm({ searchFunction }) {
+  const [formData, setFormData] = useState({ query: "" });
 
   /** Update form input. */
   function handleChange(evt) {
@@ -25,21 +31,21 @@ function SearchForm({ searchFunction, searchField = 'search' }) {
     }));
   }
 
-  /** Submit form: call function from parent & clear inputs. */
+  /** Submit form: call function from parent */
   function handleSubmit(evt) {
     evt.preventDefault();
     console.log("handleSubmit", formData);
-    searchFunction(formData);
+    searchFunction(formData.query);
   }
 
   return (
     <div className='SearchForm'>
       <form onSubmit={handleSubmit} className='SearchFrom-form'>
-        <label htmlFor={searchField}></label>
+        <label htmlFor='query'></label>
         <input
-          id={searchField}
-          name={searchField}
-          value={formData[searchField]}
+          id='query'
+          name='query'
+          value={formData.query}
           onChange={handleChange}
           size="100"
           placeholder="Enter search term..."
@@ -51,3 +57,4 @@ function SearchForm({ searchFunction, searchField = 'search' }) {
 }
 
 export default SearchForm;
+

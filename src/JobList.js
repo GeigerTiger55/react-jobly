@@ -18,6 +18,9 @@ import JoblyApi from './api';
  *  Routes -> JobList -> { JobCardList, SearchForm }
  */
 
+    //ChangeLog: updationg the searchJobs function
+    //rmv serachField att from <form> component
+
 function JobList() {
   const [jobs, setJobs] = useState({
     data: [],
@@ -37,39 +40,21 @@ function JobList() {
     // fetchJobs();
   }, [searchTerms]);
 
+    /** searchJobs sets searchTerms
+   *
+   *  Accepts: searchParams "string value" from form
+   *  Calls setSearchTerms with an obj like: {title:"string"}
+   */
 
+     function searchJobs(searchQuery) {
+      const searchParams = searchQuery? {title:searchQuery} : {};
 
-  /** searchJobs sets searchTerms
- *
- *  Accepts: searchParams object like { title: value, ...}
- */
-  function searchJobs(searchParams) {
-    // console.log("searchCompanies",searchParams);
-
-    //TODO: Move _rmvKey to a helperFunc file.
-    // Same Func present in CompanyList
-    /**Function _rmvKey takes an obj as parameter
-     * Return a new obj ref with all keys whose value '' removed.
-     */
-    function _rmvKey(obj) {
-      const newObj = { ...obj };
-      for (let key in newObj) {
-        if (newObj[key] === '') {
-          delete newObj[key];
-        }
-      }
-      return newObj;
+      setSearchTerms(searchParams);
     }
 
-    //Filter out keys with '' values.
-    searchParams = _rmvKey(searchParams);
-
-    setSearchTerms(searchParams);
-  }
-  console.log("Jobs.data.length",jobs.data.length);
   return (
     <div>
-      <SearchForm searchFunction={searchJobs} searchField={"title"} />
+      <SearchForm searchFunction={searchJobs} />
       {jobs.data.length > 0
       ? <JobCardList jobs={jobs.data} />
       : <p>No Jobs!</p>}

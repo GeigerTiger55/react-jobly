@@ -15,10 +15,11 @@ import { useState, useEffect } from 'react';
     isLoading: true,
   }
 
-  * - searchTerms: {name}
+ * - searchTerms: {name}
  *
  * Routes -> CompanyList -> { SearchForm, CompanyCard }
  */
+
 
 function CompanyList() {
   const [companies, setCompanies] = useState({
@@ -44,27 +45,12 @@ function CompanyList() {
 
   /** searchCompanies sets searchTerms
    *
-   *  Accepts: searchParams object like { name: value, ...}
+   *  Accepts: searchParams "string value" from form
+   *  Calls setSearchTerms with an obj like: {name:"string"}
    */
-  function searchCompanies(searchParams) {
-    // console.log("searchCompanies",searchParams);
 
-    /**Function _rmvKey takes an obj as parameter
-     * Return a new obj ref with all keys whose value '' removed.
-     * TODO: filter obj.entries
-    */
-    function _rmvKey(obj) {
-      const newObj = { ...obj };
-      for (let key in newObj) {
-        if (newObj[key] === '') {
-          delete newObj[key];
-        }
-      }
-      return newObj;
-    }
-
-    //Filter out keys with '' values.
-    searchParams = _rmvKey(searchParams);
+  function searchCompanies(searchQuery) {
+    const searchParams = searchQuery? {name:searchQuery} : {};
 
     setSearchTerms(searchParams);
   }
@@ -73,7 +59,6 @@ function CompanyList() {
     <div>
       <SearchForm
         searchFunction={searchCompanies}
-        searchField='name'
       />
       {companies.isLoading
         ? <p>Loading!</p>
