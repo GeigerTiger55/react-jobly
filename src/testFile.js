@@ -24,6 +24,14 @@ const TEST_USER = {
 	"email":"test@yahoo.com"
 }
 
+const TEST_BAD_USER = {
+    "username":"",
+    "password":"password",
+    "firstName":"firstName",
+    "lastName":"lastName",
+    "email":"invalid"
+}
+
 
 export {TEST_COMPANY, TEST_JOB, TEST_USER};
 
