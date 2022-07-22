@@ -1,15 +1,11 @@
-import { Navigate } from 'react-router-dom';
-import JoblyApi from './api';
-
-import { useContext, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import Alert from './Alert';
-
-import  userContext  from './userContext';
 
 /** LoginForm component
  *
  * Props:
- * - sendUserData: function to send user data to App for setting context
+ * - loginUser: function to send user data to App for setting context
  *
  * State:
  * - formData: { username, password, firstName, lastName, email }
@@ -17,15 +13,14 @@ import  userContext  from './userContext';
  *
  * RoutesList -> LoginForm
  */
-function LoginForm({ sendUserData }) {
-  const { userData } = useContext(userContext);
+function LoginForm({ loginUser }) {
   const initialState = {
     username: "",
     password: "",
   };
-
   const [formData, setFormData] = useState(initialState);
   const [errorData, setErrorData] = useState([]);
+  const navigate = useNavigate();
 
   /** Update local state w/curr state of input elem */
   function handleChange(evt) {
@@ -37,15 +32,16 @@ function LoginForm({ sendUserData }) {
   }
 
   /**  handleSubmit calls func passed as prop
-   * on success will reset formData state
+   * on success will reset formData state and redirect user to /companies
    * on failure will setErrorData state
   */
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      await sendUserData(formData);
+      await loginUser(formData);
       setFormData(initialState);
       setErrorData([]);
+      navigate('/companies');
     } catch (err) {
       setErrorData(err);
     }

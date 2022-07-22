@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import Alert from './Alert';
 
 
 /** SignupForm component
  *
  * Props:
- * - sendUserData: function to send user data to App for setting context
+ * - signupUser: function from to App to sign up user
  *
  * State:
  * - formData: { username, password, firstName, lastName, email }
@@ -13,8 +14,7 @@ import Alert from './Alert';
  *
  * RoutesList -> SignupForm
  */
-//FIXME: Change 'sendUserData' -> 'signUp'
-function SignupForm({ sendUserData }) {
+function SignupForm({ signupUser }) {
   const initialState = {
     username: "",
     password: "",
@@ -25,7 +25,7 @@ function SignupForm({ sendUserData }) {
 
   const [formData, setFormData] = useState(initialState);
   const [errorData, setErrorData] = useState([]);
-
+  const navigate = useNavigate();
 
   /** Update local state w/curr state of input elem */
   function handleChange(evt) {
@@ -37,16 +37,16 @@ function SignupForm({ sendUserData }) {
   }
 
   /**  handleSubmit calls func passed as prop
-   * on success will reset formData state
+   * on success will reset formData state and redirect user to /companies
    * on failure will setErrorData state
   */
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      //FIXME: useNavigate?
-      await sendUserData(formData);
+      await signupUser(formData);
       setFormData(initialState);
       setErrorData([]);
+      navigate('/companies');
     } catch (err) {
       setErrorData(err);
     }

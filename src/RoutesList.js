@@ -40,8 +40,8 @@ function RoutesList({ loginUser, signupUser }) {
     return (
       <Routes>
         <Route path='/' element={<Homepage />} />
-        <Route path='/login' element={<LoginForm sendUserData={loginUser} />} />
-        <Route path='/signup' element={<SignupForm sendUserData={signupUser} />} />
+        <Route path='/login' element={<LoginForm loginUser={loginUser} />} />
+        <Route path='/signup' element={<SignupForm signupUser={signupUser} />} />
         <Route path='*' element={<Navigate to='/' />} />
       </Routes>
     );

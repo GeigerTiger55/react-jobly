@@ -10,14 +10,14 @@ import { Link } from "react-router-dom";
  * State:
  * - none
  *
- *
  * Routes -> Homepage
  */
 
 function Homepage() {
   const { userData } = useContext(userContext);
-  //FIXME: Change conditional to check user obj not token.
-  if (userData.token) {
+
+  //Show links dependent on if user is signed in
+  if (userData.username) {
     return (
       <div>
         <h1>Jobly</h1>

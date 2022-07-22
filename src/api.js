@@ -84,6 +84,7 @@ class JoblyApi {
       { username, password, firstName, lastName, email },
       'post'
     );
+    this.token = res.token;
     console.log('registerUser', res.token);
     return res.token;
 
@@ -98,6 +99,7 @@ class JoblyApi {
       { username, password },
       'post'
     );
+    this.token = res.token;
     console.log('loginUser', res.token);
     return res.token;
   }

@@ -14,7 +14,6 @@ import JobCardList from './JobCardList';
       isLoading: true,
       errorMessages: [err,...]
   }
-
  *  Params:
  *  - companyHandle
  *
