@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
+import  userContext  from './userContext';
 import Alert from './Alert';
 
-import  userContext  from './userContext';
 /** UserProfile component
  * TODO:
  *

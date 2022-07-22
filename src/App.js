@@ -82,6 +82,7 @@ function App() {
     setUserData(DEFAULT_USERDATA);
   }
 
+  //TODO: write patch user function
 
   return (
     <userContext.Provider value={{ userData }}>

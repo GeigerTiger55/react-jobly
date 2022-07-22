@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import userContext from './userContext';
 import { Link } from "react-router-dom";
 import './Nav.css';
 
@@ -12,19 +14,33 @@ import './Nav.css';
  * App -> Nav
  */
 function Nav({ logoutUser }) {
+  const { userData } = useContext(userContext);
+
   return (
     <div className='Nav'>
-      <Link to='/' className='Nav-Link'> Jobly </Link>
-      <ul className='Nav-ul'>
-        <li><Link to='/login' className='Nav-Link'> Login </Link></li>
-        <li><Link to='/signup' className='Nav-Link'> Sign Up </Link></li>
-        <li><Link to='/companies' className='Nav-Link'> Companies </Link></li>
-        <li><Link to='/jobs' className='Nav-Link'> Jobs </Link></li>
-        <li><Link to='/profile' className='Nav-Link'> Profile </Link></li>
-        <li><Link to='/' onClick={logoutUser} className='Nav-Link'> Logout </Link></li>
-      </ul>
+      <div className='Nav-leftDiv'>
+        <Link to='/' className='Nav-Link'> Jobly </Link>
+      </div>
+      {userData.token
+        ? (
+          <div className='Nav-rightDiv'>
+            <Link to='/companies' className='Nav-Link'> Companies </Link>
+            <Link to='/jobs' className='Nav-Link'> Jobs </Link>
+            <Link to='/profile' className='Nav-Link'> Profile </Link>
+            <Link to='/' onClick={logoutUser} className='Nav-Link'> Logout </Link>
+          </div>
+        )
+        : (
+          <div className='Nav-rightDiv'>
+            <Link to='/login' className='Nav-Link'> Login </Link>
+            <Link to='/signup' className='Nav-Link'> Sign Up </Link>
+          </div>
+        )}
     </div>
   );
 }
 
 export default Nav;
+
+// displayLinks(){ if userData.token return (companies, jobs, profile, log)
+// else return (login, signup)}
