@@ -32,9 +32,20 @@ function App() {
   async function loginUser({username, password}){
     //TODO: figure out error catching
     const token = await JoblyApi.loginUser({username, password});
-    console.log('loginUser', token);
-    const user = await JoblyApi.getUser({username, token});
+    console.log('loginUser in App', token);
+    JoblyApi.token = token;
+
+    const user = await JoblyApi.getUser({username});
     console.log('user data???', user);
+
+    // TODO:
+    // Use effect on mount/ token state change
+    //
+
+    // TODO:
+    // set userContext token value
+    // In api.js we import userContext
+    // set the static token value to userContext token value.
   }
 
 
@@ -49,9 +60,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Nav />
-        <RoutesList 
-          loginUser={loginUser} 
-          signupUser={signupUser} 
+        <RoutesList
+          loginUser={loginUser}
+          signupUser={signupUser}
         />
       </BrowserRouter>
     </div>

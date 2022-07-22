@@ -20,6 +20,7 @@ class JoblyApi {
     "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
   static async request(endpoint, data = {}, method = "get") {
+    console.log(JoblyApi.token);
     console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
@@ -101,16 +102,14 @@ class JoblyApi {
   }
 
   /**getUser
-   * 
+   *
    * Accept: username, token
-   * 
+   *
    * Returns user like { username, firstName, lastName, isAdmin, jobs }
    *   where jobs is { id, title, companyHandle, companyName, state }
    */
-  static async getUser({ username, token }) {
-    let res = await this.request(`users/${username}`,
-      { _token: token }
-    );
+  static async getUser({ username }) {
+    let res = await this.request(`users/${username}`);
     console.log('getUser', res.user);
     return res.user;
   }
