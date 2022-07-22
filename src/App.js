@@ -5,6 +5,8 @@ import Nav from './Nav';
 import JoblyApi from './api';
 import userContext from './userContext';
 import { TEST_USER } from './testFile';
+import jwt_decode from "jwt-decode";
+
 
 import './App.css';
 
@@ -17,15 +19,20 @@ import './App.css';
  * App -> (<Nav/> | <RoutesList/>)
  */
 function App() {
+
+  //
+
+
   //FIXME: 2 pieces of state
   //1.) userData
   //2.) token
-  
+
+  //TODO: Use determinant to fix ternary
   const [token, setToken] = useState(
     window.localStorage.getItem("jobly-token") || ''
   );
   const [userData, setUserData] = useState({});
-  console.log('App, userData', userData);
+  console.log('App, userData',token,userData);
   //For testing purposes
   // JoblyApi.registerUser(TEST_USER);
   // JoblyApi.loginUser(TEST_USER);
@@ -33,8 +40,12 @@ function App() {
   useEffect(function fetchUserDataOnTokenChange() {
     //FIXME: jwtDecode library. Decode token and pull out username.
     async function fetchUserData() {
+      const username = jwt_decode(token).username;
+
+      console.log("useEffect", username);
+
       try {
-        const userResult = await JoblyApi.getUser({ username: userData.username });
+        const userResult = await JoblyApi.getUser({username});
         setUserData(userResult);
       } catch (err) {
         console.log('fetchUserData', err);
@@ -54,13 +65,8 @@ function App() {
   async function loginUser({ username, password }) {
     const token = await JoblyApi.loginUser({ username, password });
     window.localStorage.setItem("jobly-token", token);
-    //FIXME: Move to Jobly.api class. LocalStorage incoming
-    JoblyApi.token = token;
-    setUserData({
-      username,
-      user: {},
-      token
-    });
+    console.log('Token in local storage',window.localStorage.getItem('jobly-token'));
+    setToken(token);
   }
 
   /** signUpUser takes an object of userData as argument
@@ -79,8 +85,8 @@ function App() {
       { username, password, firstName, lastName, email }
     );
     window.localStorage.setItem("jobly-token", token);
+    setToken(window.localStorage.get('jobly-token'));
     // FIXME: move to API, localStorage incoming.
-    JoblyApi.token = token;
     setUserData({
       username,
       user: {},
@@ -95,6 +101,8 @@ function App() {
   /** logoutUser - sets UserData to default userdata */
   function logoutUser() {
     window.localStorage.removeItem("jobly-token");
+    setToken('');
+    //Update token state
     setUserData({});
   }
 

@@ -22,7 +22,7 @@ function Homepage() {
       <div>
         <h1>Jobly</h1>
         <h4>All the jobs in one, convenient place.</h4>
-        <h1>WelcomeBack, {userData.user.firstName}</h1>
+        <h1>WelcomeBack, {userData.firstName}</h1>
       </div>
     );
   } else {

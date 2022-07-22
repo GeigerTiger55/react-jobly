@@ -30,7 +30,7 @@ import Alert from './Alert';
 function UserProfile({sendUserData}){
   const { userData } = useContext(userContext);
   //TODO: remove jobs array and password from userData.user before passing to formData
-  const [formData, setFormData] = useState( userData.user );
+  const [formData, setFormData] = useState( userData );
   const [errorData, setErrorData] = useState([]);
 
 
