@@ -4,7 +4,8 @@ import Alert from './Alert';
 /** LoginForm component
  * TODO:
  *
- * Props: setContext
+ * Props: 
+ * - sendUserData: function to send user data to App for setting context
  *
  * State:
  * - formData: { username, password, firstName, lastName, email }
@@ -12,7 +13,6 @@ import Alert from './Alert';
  *
  * RoutesList -> LoginForm
  */
-//TODO: make password secret
 function LoginForm({ sendUserData }) {
   const initialState = {
     username: "",
@@ -38,13 +38,10 @@ function LoginForm({ sendUserData }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      console.log('about to try sendUserData');
       await sendUserData(formData);
-      console.log("seneUserData completed")
       setFormData(initialState);
       setErrorData([]);
     } catch (err) {
-      console.log("Login Error Message ", err);
       setErrorData(err);
     }
   }

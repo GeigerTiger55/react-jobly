@@ -4,7 +4,8 @@ import Alert from './Alert';
 
 /** SignupForm component
  *
- * Props: setContext
+ * Props:
+ * - sendUserData: function to send user data to App for setting context
  *
  * State:
  * - formData: { username, password, firstName, lastName, email }

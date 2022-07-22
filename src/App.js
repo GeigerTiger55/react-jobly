@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import RoutesList from './RoutesList';
 import Nav from './Nav';
 import JoblyApi from './api';
@@ -24,58 +24,38 @@ function App() {
   // JoblyApi.registerUser(TEST_USER);
   // JoblyApi.loginUser(TEST_USER);
 
-  //loginUser func
-  // Accepts: { username, password }
-  // API call to JoblyApi.loginUser - to authenticate and get token
-  // getUser (to get all user data)
-  // update context
+
+  // TODO:update context
   async function loginUser({username, password}){
-    //TODO: figure out error catching
-
-    // Add TRY/ CATCH that triggers the return value.
-    // return {errors:[]}
-
     const token = await JoblyApi.loginUser({username, password});
-
-
-    // try{
-    //   token = await JoblyApi.loginUser({username, password});
-
-    // } catch (error){
-    //   return error;
-    // }
-    console.log('loginUser in App', token);
-
-    // If token is errors Throw!
-
-
     JoblyApi.token = token;
-
-    const user = await JoblyApi.getUser({username});
-    console.log('user data???', user);
-
-    // TODO:
-    // Use effect on mount/ token state change
-    // That will make the JoblyApi.getUser call
-    // useEffect boilerplate
-    // callback with inner async function
-    // Try and catch that logs information either way
-
-
-
-
-
-
-
-
+    setUserData({
+      username,
+      user: {},
+      token
+    });
   }
+  
+  useEffect(function fetchUserDataOnTokenChange(){
+    async function fetchUserData(){
+      try {
+        const userResult = await JoblyApi.getUser({username:userData.username});
+        setUserData(uData => ({...uData, user:userResult}));
+      } catch(err){
+        console.log('fetchUserData', err);
+        //TODO: display error message somewhere?
+      }
+    }
+    console.log('useEffect fetchUserDataOnTokenChange', userData.token);
+    if(userData.token !== ''){
+      fetchUserData();
+    }
 
+  }, [userData.token]);
 
   //TODO: signupUser func
   function signupUser(){
   }
-
-
 
 
   return (
