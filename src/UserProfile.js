@@ -1,4 +1,7 @@
+import { useContext, useState } from "react";
+import Alert from './Alert';
 
+import  userContext  from './userContext';
 /** UserProfile component
  * TODO:
  *
@@ -15,10 +18,96 @@
  *
  * App -> TodoApp -> { TodoForm, EditableTodoList }
  */
-function UserProfile(){
+
+// same fields as signup
+// TODO: username cannot be edited
+// TODO: onSubmit calls updateUser function from App
+// prop:
+// - updateUser function
+// TODO: userData --> get from Context
+// state: formData
+
+function UserProfile({sendUserData}){
+  const { userData } = useContext(userContext);
+  //TODO: remove jobs array and password from userData.user before passing to formData
+  const [formData, setFormData] = useState( userData.user );
+  const [errorData, setErrorData] = useState([]);
+
+
+  /** Update local state w/curr state of input elem */
+  function handleChange(evt) {
+    const { name, value } = evt.target;
+    setFormData(fData => ({
+      ...fData,
+      [name]: value,
+    }));
+  }
+
+  /**  handleSubmit calls func passed as prop
+   * on success will reset formData state
+   * on failure will setErrorData state
+  */
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    try {
+      sendUserData(formData);
+      setErrorData([]);
+    } catch (err) {
+      setErrorData(err);
+    }
+  }
+
   return (
-    <header>UserProfile!</header>
-  )
+    <form onSubmit={handleSubmit}>
+      <p><label htmlFor="username">Username:</label>
+      <input
+        id="username"
+        name="username"
+        value={formData.username}
+        onChange={handleChange}
+      /></p>
+
+      <p><label htmlFor="password">Password:</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        value={formData.password}
+        onChange={handleChange}
+      /></p>
+
+      <p><label htmlFor="firstName">First Name</label>
+      <input
+        id="firstName"
+        name="firstName"
+        value={formData.firstName}
+        onChange={handleChange}
+      /></p>
+
+      <p><label htmlFor="lastName">Last Name</label>
+      <input
+        id="lastName"
+        name="lastName"
+        value={formData.lastName}
+        onChange={handleChange}
+      /></p>
+
+      <p><label htmlFor="email">Email</label>
+      <input
+        id="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+      /></p>
+
+      {errorData.length > 0 && <Alert errors={errorData}/>}
+
+      <button>Submit</button>
+
+    </form>
+
+  );
 }
 
 export default UserProfile;
+

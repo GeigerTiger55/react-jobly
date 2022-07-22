@@ -59,7 +59,8 @@ function LoginForm({ sendUserData }) {
     //return (<Navigate to="/companies"))
     <div>
 
-      {/* If empty string then resolves false
+      {/* TODO: move logic to RoutesList
+      If empty string then resolves false
       If token is not empty string resolves true? */}
       {userData.token && (<Navigate to="/" />)}
 

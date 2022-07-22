@@ -1,8 +1,17 @@
+/** Alert displays array of error messages
+ * 
+ * Props:
+ * -errors like [error, ...]
+ * 
+ */
 
-function Alert(){
+function Alert({errors}){
+  console.log('Alert, errors:', errors);
   return (
-    <header>Alert!</header>
-  )
+    <div>
+      {errors.map(err=>(<p key={err}>{err}</p>))}
+    </div>
+  );
 }
 
 export default Alert;
