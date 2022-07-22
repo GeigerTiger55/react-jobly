@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { Navigate } from 'react-router-dom';
+import JoblyApi from './api';
+
+import { useContext, useState } from "react";
 import Alert from './Alert';
+
+import  userContext  from './userContext';
 
 /** LoginForm component
  * TODO:
  *
- * Props: 
+ * Props:
  * - sendUserData: function to send user data to App for setting context
  *
  * State:
@@ -14,6 +19,7 @@ import Alert from './Alert';
  * RoutesList -> LoginForm
  */
 function LoginForm({ sendUserData }) {
+  const { userData } = useContext(userContext);
   const initialState = {
     username: "",
     password: "",
@@ -47,29 +53,44 @@ function LoginForm({ sendUserData }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <p><label htmlFor="username">Username:</label>
-        <input
-          id="username"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-        /></p>
 
-      <p><label htmlFor="password">Password:</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          value={formData.password}
-          onChange={handleChange}
-        /></p>
+    //Throw a conditonal checking userLoggedIn via context
+    //If true
+    //return (<Navigate to="/companies"))
+    <div>
 
-      {errorData.length > 0 && <Alert errors={errorData} />}
+      {/* If empty string then resolves false
+      If token is not empty string resolves true? */}
+      {userData.token && (<Navigate to="/" />)}
 
-      <button>Submit</button>
 
-    </form>
+
+
+      <form onSubmit={handleSubmit}>
+        <p><label htmlFor="username">Username:</label>
+          <input
+            id="username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+          /></p>
+
+        <p><label htmlFor="password">Password:</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            value={formData.password}
+            onChange={handleChange}
+          /></p>
+
+        {errorData.length > 0 && <Alert errors={errorData} />}
+
+        <button>Submit</button>
+
+      </form>
+    </div>
+
   );
 }
 
