@@ -6,7 +6,7 @@ import './Nav.css';
 /**Shows navigation bar
  *
  * Props:
- * - FIXME: Add function as prop.
+ * - logoutUser: function from App to logout the user
  *
  * State:
  * - none
@@ -21,7 +21,7 @@ function Nav({ logoutUser }) {
       <div className='Nav-leftDiv'>
         <Link to='/' className='Nav-Link'> Jobly </Link>
       </div>
-      {userData.token
+      {userData.username
         ? (
           <div className='Nav-rightDiv'>
             <Link to='/companies' className='Nav-Link'> Companies </Link>

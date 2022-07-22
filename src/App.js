@@ -98,11 +98,10 @@ function App() {
 
   /** logoutUser - sets UserData to default userdata */
   function logoutUser() {
-    setUserData(DEFAULT_USERDATA);
+    setUserData({});
   }
 
   //TODO: write patch user function
-  // FIXME: Passing just userData not token
 
   return (
     <userContext.Provider value={{ userData }}>

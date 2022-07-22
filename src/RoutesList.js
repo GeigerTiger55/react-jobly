@@ -24,8 +24,7 @@ import UserProfile from './UserProfile';
 
 function RoutesList({ loginUser, signupUser }) {
   const { userData } = useContext(userContext);
-  //FIXME: Conditonal to user obj {} not token
-  if (userData.token) {
+  if (userData.username) {
     return (
       <Routes>
         <Route path='/' element={<Homepage />} />
