@@ -7,7 +7,6 @@ import Alert from './Alert';
 import  userContext  from './userContext';
 
 /** LoginForm component
- * TODO:
  *
  * Props:
  * - sendUserData: function to send user data to App for setting context
