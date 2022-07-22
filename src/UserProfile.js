@@ -67,15 +67,6 @@ function UserProfile({sendUserData}){
         onChange={handleChange}
       /></p>
 
-      <p><label htmlFor="password">Password:</label>
-      <input
-        id="password"
-        name="password"
-        type="password"
-        value={formData.password}
-        onChange={handleChange}
-      /></p>
-
       <p><label htmlFor="firstName">First Name</label>
       <input
         id="firstName"

@@ -27,7 +27,9 @@ function Nav({ logoutUser }) {
             <Link to='/companies' className='Nav-Link'> Companies </Link>
             <Link to='/jobs' className='Nav-Link'> Jobs </Link>
             <Link to='/profile' className='Nav-Link'> Profile </Link>
-            <Link to='/' onClick={logoutUser} className='Nav-Link'> Logout </Link>
+            <Link to='/' onClick={logoutUser} className='Nav-Link'>
+               Logout, {userData.username}
+            </Link>
           </div>
         )
         : (
