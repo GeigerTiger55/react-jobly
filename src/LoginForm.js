@@ -35,13 +35,16 @@ function LoginForm({ sendUserData }) {
    * on success will reset formData state
    * on failure will setErrorData state
   */
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      sendUserData(formData);
+      console.log('about to try sendUserData');
+      await sendUserData(formData);
+      console.log("seneUserData completed")
       setFormData(initialState);
       setErrorData([]);
     } catch (err) {
+      console.log("Login Error Message ", err);
       setErrorData(err);
     }
   }
@@ -70,7 +73,7 @@ function LoginForm({ sendUserData }) {
       <button>Submit</button>
 
     </form>
-  )
+  );
 }
 
 export default LoginForm;

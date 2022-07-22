@@ -31,8 +31,24 @@ function App() {
   // update context
   async function loginUser({username, password}){
     //TODO: figure out error catching
+
+    // Add TRY/ CATCH that triggers the return value.
+    // return {errors:[]}
+
     const token = await JoblyApi.loginUser({username, password});
+
+
+    // try{
+    //   token = await JoblyApi.loginUser({username, password});
+
+    // } catch (error){
+    //   return error;
+    // }
     console.log('loginUser in App', token);
+
+    // If token is errors Throw!
+
+
     JoblyApi.token = token;
 
     const user = await JoblyApi.getUser({username});
@@ -40,12 +56,18 @@ function App() {
 
     // TODO:
     // Use effect on mount/ token state change
-    //
+    // That will make the JoblyApi.getUser call
+    // useEffect boilerplate
+    // callback with inner async function
+    // Try and catch that logs information either way
 
-    // TODO:
-    // set userContext token value
-    // In api.js we import userContext
-    // set the static token value to userContext token value.
+
+
+
+
+
+
+
   }
 
 
