@@ -20,9 +20,15 @@ const DEFAULT_USERDATA = { username: '', user: {}, token: '' };
  * App -> (<Nav/> | <RoutesList/>)
  */
 function App() {
+
+  //
+
+
   //FIXME: 2 pieces of state
   //1.) userData
   //2.) token
+
+  const [token, setToken] = useState();
   const [userData, setUserData] = useState(DEFAULT_USERDATA);
   console.log('App, userData', userData);
   //For testing purposes
