@@ -14,7 +14,8 @@ import UserProfile from './UserProfile';
 /** Routes to navigate pages
  *
  * Props:
- * - FIXME: Add function as props
+ * - loginUser: function from App to logout the user, passed to LoginFrom
+ * - signupUser: function from App to sign up a new user, passed to SignupForm
  *
  * State:
  * - none

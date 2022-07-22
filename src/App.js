@@ -17,15 +17,10 @@ import './App.css';
  * App -> (<Nav/> | <RoutesList/>)
  */
 function App() {
-
-  //
-
-
   //FIXME: 2 pieces of state
   //1.) userData
   //2.) token
-
-  //TODO: Use determinant to fix ternary
+  
   const [token, setToken] = useState(
     window.localStorage.getItem("jobly-token") || ''
   );
