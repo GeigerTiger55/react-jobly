@@ -61,6 +61,8 @@ function LoginForm({ sendUserData }) {
       {/* TODO: move logic to RoutesList
       If empty string then resolves false
       If token is not empty string resolves true? */}
+      {/* FIXME: Remove as RoutesList covers which routes are accessible.
+      Redirect to companies. */}
       {userData.token && (<Navigate to="/" />)}
 
 

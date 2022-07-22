@@ -14,7 +14,7 @@ import UserProfile from './UserProfile';
 /** Routes to navigate pages
  *
  * Props:
- * - none
+ * - FIXME: Add function as props
  *
  * State:
  * - none
@@ -24,7 +24,7 @@ import UserProfile from './UserProfile';
 
 function RoutesList({ loginUser, signupUser }) {
   const { userData } = useContext(userContext);
-
+  //FIXME: Conditonal to user obj {} not token
   if (userData.token) {
     return (
       <Routes>

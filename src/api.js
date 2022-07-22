@@ -86,6 +86,7 @@ class JoblyApi {
     );
     console.log('registerUser', res.token);
     return res.token;
+
   }
 
   /**Login User

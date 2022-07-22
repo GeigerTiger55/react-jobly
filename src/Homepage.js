@@ -10,12 +10,13 @@ import { Link } from "react-router-dom";
  * State:
  * - none
  *
+ *
  * Routes -> Homepage
  */
 
 function Homepage() {
   const { userData } = useContext(userContext);
-
+  //FIXME: Change conditional to check user obj not token.
   if (userData.token) {
     return (
       <div>

@@ -13,6 +13,7 @@ import Alert from './Alert';
  *
  * RoutesList -> SignupForm
  */
+//FIXME: Change 'sendUserData' -> 'signUp'
 function SignupForm({ sendUserData }) {
   const initialState = {
     username: "",
@@ -39,10 +40,11 @@ function SignupForm({ sendUserData }) {
    * on success will reset formData state
    * on failure will setErrorData state
   */
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      sendUserData(formData);
+      //FIXME: useNavigate?
+      await sendUserData(formData);
       setFormData(initialState);
       setErrorData([]);
     } catch (err) {
@@ -51,6 +53,7 @@ function SignupForm({ sendUserData }) {
   }
 
   return (
+
     <form onSubmit={handleSubmit}>
       <p><label htmlFor="username">Username:</label>
       <input

@@ -6,7 +6,7 @@ import './Nav.css';
 /**Shows navigation bar
  *
  * Props:
- * - none
+ * - FIXME: Add function as prop.
  *
  * State:
  * - none

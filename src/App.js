@@ -14,11 +14,15 @@ const DEFAULT_USERDATA = { username: '', user: {}, token: '' };
 /** App for managing a Jobs Board.
  *
  * Props: None
+//  * FIXME: Add state
  * State: None
  *
  * App -> (<Nav/> | <RoutesList/>)
  */
 function App() {
+  //FIXME: 2 pieces of state
+  //1.) userData
+  //2.) token
   const [userData, setUserData] = useState(DEFAULT_USERDATA);
   console.log('App, userData', userData);
   //For testing purposes
@@ -26,6 +30,7 @@ function App() {
   // JoblyApi.loginUser(TEST_USER);
 
   useEffect(function fetchUserDataOnTokenChange() {
+    //FIXME: jwtDecode library. Decode token and pull out username.
     async function fetchUserData() {
       try {
         const userResult = await JoblyApi.getUser({ username: userData.username });
@@ -39,7 +44,7 @@ function App() {
     if (userData.token !== '') {
       fetchUserData();
     }
-
+    // FIXME:
   }, [userData.token]);
 
   /** loginUser takes an object of {username, password} as argument
@@ -47,6 +52,7 @@ function App() {
    */
   async function loginUser({ username, password }) {
     const token = await JoblyApi.loginUser({ username, password });
+    //FIXME: Move to Jobly.api class. LocalStorage incoming
     JoblyApi.token = token;
     setUserData({
       username,
@@ -59,12 +65,18 @@ function App() {
    * Like: { username, password, firstName, lastName, email }
    * sets token state via setUserData(newTokenValue)
    */
-  async function signupUser(
-    { username, password, firstName, lastName, email }
-  ) {
+  async function signupUser({
+    username,
+    password,
+    firstName,
+    lastName,
+    email,
+  }) {
     const token = await JoblyApi.registerUser(
+      // FIXME: Formatting
       { username, password, firstName, lastName, email }
     );
+    // FIXME: move to API, localStorage incoming.
     JoblyApi.token = token;
     setUserData({
       username,
@@ -78,17 +90,18 @@ function App() {
   //We render the <Navigate to="/companies"> component
 
   /** logoutUser - sets UserData to default userdata */
-  function logoutUser(){
+  function logoutUser() {
     setUserData(DEFAULT_USERDATA);
   }
 
   //TODO: write patch user function
+  // FIXME: Passing just userData not token
 
   return (
     <userContext.Provider value={{ userData }}>
       <div className="App">
         <BrowserRouter>
-          <Nav logoutUser={logoutUser}/>
+          <Nav logoutUser={logoutUser} />
           <RoutesList
             loginUser={loginUser}
             signupUser={signupUser}
