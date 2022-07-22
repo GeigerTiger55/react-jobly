@@ -30,7 +30,7 @@ function App() {
   // getUser (to get all user data)
   // update context
   async function loginUser({username, password}){
-    
+    //TODO: figure out error catching
     const token = await JoblyApi.loginUser({username, password});
     console.log('loginUser', token);
     const user = await JoblyApi.getUser({username, token});
