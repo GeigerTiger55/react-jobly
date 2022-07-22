@@ -25,10 +25,9 @@ function App() {
   //1.) userData
   //2.) token
 
+  //TODO: Use determinant to fix ternary
   const [token, setToken] = useState(
-    window.localStorage.getItem("jobly-token") ?
-    window.localStorage.getItem("jobly-token") :
-    ''
+    window.localStorage.getItem("jobly-token") || ''
     );
   const [userData, setUserData] = useState({});
   console.log('App, userData', userData);
@@ -59,6 +58,7 @@ function App() {
    */
   async function loginUser({ username, password }) {
     const token = await JoblyApi.loginUser({ username, password });
+    window.localStorage.setItem("jobly-token",token);
     //FIXME: Move to Jobly.api class. LocalStorage incoming
     JoblyApi.token = token;
     setUserData({
@@ -83,6 +83,7 @@ function App() {
       // FIXME: Formatting
       { username, password, firstName, lastName, email }
     );
+    window.localStorage.setItem("jobly-token",token);
     // FIXME: move to API, localStorage incoming.
     JoblyApi.token = token;
     setUserData({
