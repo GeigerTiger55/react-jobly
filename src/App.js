@@ -28,7 +28,11 @@ function App() {
   //1.) userData
   //2.) token
 
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(
+    window.localStorage.getItem("jobly-token") ?
+    window.localStorage.getItem("jobly-token") :
+    ''
+    );
   const [userData, setUserData] = useState(DEFAULT_USERDATA);
   console.log('App, userData', userData);
   //For testing purposes
