@@ -1,11 +1,14 @@
 import { BrowserRouter } from 'react-router-dom';
+import { useState } from 'react';
 import RoutesList from './RoutesList';
 import Nav from './Nav';
-
+import JoblyApi from './api';
+import userContext from './userContext';
+import { TEST_USER } from './testFile';
 import './App.css';
 
-import { TEST_USER } from './testFile';
-import JoblyApi from './api';
+//TODO: still need username as separate key?
+const DEFAULT_USERDATA = {username: '', user:{}, token:''};
 
 /** App for managing a Jobs Board.
  *
@@ -15,12 +18,29 @@ import JoblyApi from './api';
  * App -> (<Nav/> | <RoutesList/>)
  */
 function App() {
+  const [userData, setUserData] = useState(DEFAULT_USERDATA);
 
   //For testing purposes
   // JoblyApi.registerUser(TEST_USER);
   // JoblyApi.loginUser(TEST_USER);
 
+  //loginUser func
+  // Accepts: { username, password }
+  // API call to JoblyApi.loginUser - to authenticate and get token
+  // getUser (to get all user data)
+  // update context
+  async function loginUser({username, password}){
+    
+    const token = await JoblyApi.loginUser({username, password});
+    console.log('loginUser', token);
+    const user = await JoblyApi.getUser({username, token});
+    console.log('user data???', user);
+  }
 
+
+  //TODO: signupUser func
+  function signupUser(){
+  }
 
 
 
@@ -29,7 +49,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Nav />
-        <RoutesList />
+        <RoutesList 
+          loginUser={loginUser} 
+          signupUser={signupUser} 
+        />
       </BrowserRouter>
     </div>
   );

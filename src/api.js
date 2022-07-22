@@ -13,6 +13,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 class JoblyApi {
   // Remember, the backend needs to be authorized with a token
   // We're providing a token you can use to interact with the backend API
+  // TODO: Ask about using the users token
   // DON'T MODIFY THIS TOKEN
   static token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
     "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
@@ -82,7 +83,7 @@ class JoblyApi {
       { username, password, firstName, lastName, email },
       'post'
     );
-    console.log('registerUser',res.token);
+    console.log('registerUser', res.token);
     return res.token;
   }
 
@@ -95,8 +96,23 @@ class JoblyApi {
       { username, password },
       'post'
     );
-    console.log('loginUser',res.token);
+    console.log('loginUser', res.token);
     return res.token;
+  }
+
+  /**getUser
+   * 
+   * Accept: username, token
+   * 
+   * Returns user like { username, firstName, lastName, isAdmin, jobs }
+   *   where jobs is { id, title, companyHandle, companyName, state }
+   */
+  static async getUser({ username, token }) {
+    let res = await this.request(`users/${username}`,
+      { _token: token }
+    );
+    console.log('getUser', res.user);
+    return res.user;
   }
 
 }

@@ -10,7 +10,7 @@ import Alert from './Alert';
  * - formData: { username, password, firstName, lastName, email }
  * - errorData: []
  *
- * App -> TodoApp -> { TodoForm, EditableTodoList }
+ * RoutesList -> SignupForm
  */
 function SignupForm({ sendUserData }) {
   const initialState = {
@@ -43,6 +43,7 @@ function SignupForm({ sendUserData }) {
     try {
       sendUserData(formData);
       setFormData(initialState);
+      setErrorData([]);
     } catch (err) {
       setErrorData(err);
     }
@@ -90,8 +91,7 @@ function SignupForm({ sendUserData }) {
         onChange={handleChange}
       /></p>
 
-      {/* TODO: map the errors */}
-      {errorData && <Alert errors={errorData}/>}
+      {errorData.length > 0 && <Alert errors={errorData}/>}
 
       <button>Submit</button>
 

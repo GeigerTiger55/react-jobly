@@ -20,13 +20,12 @@ import UserProfile from './UserProfile';
  * App -> RoutesList -> { Homepage, CompanyList, CompanyDetail, JobList }
  */
 
-function RoutesList() {
+function RoutesList({ loginUser, signupUser }) {
   return (
     <Routes>
       <Route path='/' element={<Homepage />} />
-      {/* TODO: Make base components */}
-      <Route path='/login' element={<LoginForm />} />
-      <Route path='/signup' element={<SignupForm />} />
+      <Route path='/login' element={<LoginForm sendUserData={loginUser}/>} />
+      <Route path='/signup' element={<SignupForm sendUserData={signupUser} />} />
       <Route path='/profile' element={<UserProfile />} />
 
       <Route path='/companies' element={<CompanyList />} />
