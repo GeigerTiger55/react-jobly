@@ -8,9 +8,6 @@ import { TEST_USER } from './testFile';
 
 import './App.css';
 
-//TODO: still need username as separate key?
-const DEFAULT_USERDATA = { username: '', user: {}, token: '' };
-
 /** App for managing a Jobs Board.
  *
  * Props: None
@@ -29,7 +26,7 @@ function App() {
   //2.) token
 
   const [token, setToken] = useState();
-  const [userData, setUserData] = useState(DEFAULT_USERDATA);
+  const [userData, setUserData] = useState({});
   console.log('App, userData', userData);
   //For testing purposes
   // JoblyApi.registerUser(TEST_USER);
@@ -40,18 +37,18 @@ function App() {
     async function fetchUserData() {
       try {
         const userResult = await JoblyApi.getUser({ username: userData.username });
-        setUserData(uData => ({ ...uData, user: userResult }));
+        setUserData(userResult);
       } catch (err) {
         console.log('fetchUserData', err);
         //TODO: display error message somewhere?
       }
     }
-    console.log('useEffect fetchUserDataOnTokenChange', userData.token);
-    if (userData.token !== '') {
+    console.log('useEffect fetchUserDataOnTokenChange', token);
+    if (token !== '') {
       fetchUserData();
     }
     // FIXME:
-  }, [userData.token]);
+  }, [token]);
 
   /** loginUser takes an object of {username, password} as argument
    * sets token state via setUserData(newTokenValue)
