@@ -20,7 +20,16 @@ import UserProfile from './UserProfile';
  * State:
  * - none
  *
- * App -> RoutesList -> { Homepage, CompanyList, CompanyDetail, JobList }
+ * App -> RoutesList -> { 
+ *  Homepage, 
+ *  LoginForm, 
+ *  SignupForm, 
+ *  UserProfile, 
+ *  CompanyList, 
+ *  CompanyDetail, 
+ *  JobList 
+ * }
+ * 
  */
 
 function RoutesList({ loginUser, signupUser }) {

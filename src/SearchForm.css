@@ -1,6 +1,19 @@
+.SearchForm {
+    margin-top: 2vh;
+}
+
+.SearchForm-form {
+    display: flex;
+    justify-content: space-between;
+}
+
 .SearchForm-input {
+    border-radius: 5px;
 }
 
 .SearchForm-button {
-
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    margin-left: 1vw;
 }

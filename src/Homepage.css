@@ -1,0 +1,18 @@
+.Homepage {
+    height: calc(100vh - 150px);
+    display: flex;
+    align-items: center;
+    color: #fff;
+    justify-content: center;
+    text-shadow: 2px 2px 5px #34302f;
+}
+
+.Homepage-text {
+    display:flex;
+    flex-direction: column;
+}
+
+.Homepage-btn {
+    margin: 1vw;
+    padding: 1vw;
+}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Alert from './Alert';
+import './SignupForm.css';
 
 
 /** SignupForm component
@@ -53,66 +54,76 @@ function SignupForm({ signupUser }) {
   }
 
   return (
+    <div className="Signup">
+      <form className='Signup-form' onSubmit={handleSubmit}>
+        <div className='Signup-form-item'>
+          <label htmlFor="username">Username:</label>
+          <input
+            id="username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+          />
+        </div>
 
-    <form onSubmit={handleSubmit}>
-      <p><label htmlFor="username">Username:</label>
-      <input
-        id="username"
-        name="username"
-        value={formData.username}
-        onChange={handleChange}
-      /></p>
+        <div className='Signup-form-item'>
+          <label htmlFor="password">Password:</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+        </div>
 
-      <p><label htmlFor="password">Password:</label>
-      <input
-        id="password"
-        name="password"
-        type="password"
-        value={formData.password}
-        onChange={handleChange}
-      /></p>
+        <div className='Signup-form-item'>
+          <label htmlFor="firstName">First Name:</label>
+          <input
+            id="firstName"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+          />
+        </div>
 
-      <p><label htmlFor="firstName">First Name</label>
-      <input
-        id="firstName"
-        name="firstName"
-        value={formData.firstName}
-        onChange={handleChange}
-      /></p>
+        <div className='Signup-form-item'>
+          <label htmlFor="lastName">Last Name:</label>
+          <input
+            id="lastName"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+          />
+        </div>
 
-      <p><label htmlFor="lastName">Last Name</label>
-      <input
-        id="lastName"
-        name="lastName"
-        value={formData.lastName}
-        onChange={handleChange}
-      /></p>
+        <div className='Signup-form-item'>
+          <label htmlFor="email">Email:</label>
+          <input
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </div>
 
-      <p><label htmlFor="email">Email</label>
-      <input
-        id="email"
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-      /></p>
+        {errorData.length > 0 && <Alert errors={errorData} />}
 
-      {errorData.length > 0 && <Alert errors={errorData}/>}
+        <button className='Signup-btn btn btn-primary'>Submit</button>
 
-      <button>Submit</button>
-
-    </form>
-
+      </form>
+    </div>
   );
 }
 
 export default SignupForm;
 
   // Example Errors
-  /**
-  instance.username does not meet minimum length of 1
-  instance.password does not meet minimum length of 5
-  instance.firstName does not meet minimum length of 1
-  instance.lastName does not meet minimum length of 1
-  instance.email does not meet minimum length of 6
-  instance.email does not conform to the "email" format
-   */
+/**
+instance.username does not meet minimum length of 1
+instance.password does not meet minimum length of 5
+instance.firstName does not meet minimum length of 1
+instance.lastName does not meet minimum length of 1
+instance.email does not meet minimum length of 6
+instance.email does not conform to the "email" format
+ */

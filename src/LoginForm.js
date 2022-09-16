@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Alert from './Alert';
+import './LoginForm.css';
 
 /** LoginForm component
  *
@@ -48,32 +49,34 @@ function LoginForm({ loginUser }) {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <p>
-          <label htmlFor="username">Username:</label>
+    <div className='Login'>
+      <form className='Login-form' onSubmit={handleSubmit}>
+        <div className='Login-form-item'>
+          <label className='form-item' htmlFor="username">Username:</label>
           <input
             id="username"
             name="username"
+            className='form-item'
             value={formData.username}
             onChange={handleChange}
           />
-        </p>
+        </div>
 
-        <p>
-          <label htmlFor="password">Password:</label>
+        <div className='Login-form-item'>
+          <label className='form-item' htmlFor="password">Password:</label>
           <input
             id="password"
             name="password"
             type="password"
+            className='form-item'
             value={formData.password}
             onChange={handleChange}
           />
-        </p>
+        </div>
 
         {errorData.length > 0 && <Alert errors={errorData} />}
 
-        <button>Submit</button>
+        <button className='Login-btn btn btn-primary'>Submit</button>
 
       </form>
     </div>

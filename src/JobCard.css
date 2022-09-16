@@ -1,11 +1,8 @@
 .JobCard {
-    padding: 25px;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    /* padding-left: 25px;
-    padding-right: 25px; */
+    padding: 1vh;
+    margin: 1vh;
     border: solid;
-    text-align: left;
+    background-color: #fff;
 }
 
 .JobCard-title {
@@ -15,8 +12,15 @@
     justify-content: space-between;
 }
 
-.JobCard-title {
+.JobCard-company {
     font-size: large;
     display: flex;
-    justify-content: space-between;
+}
+
+.JobCard-salary {
+    display: flex;
+}
+
+.JobCard-equity {
+    display: flex;
 }

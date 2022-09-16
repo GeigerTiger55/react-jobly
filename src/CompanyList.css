@@ -1,3 +1,7 @@
+.CompanyList {
+    height: calc(100vh - 150px);
+    color: #007bff
+}
 .CompanyList-cards {
     padding: 10px
 }

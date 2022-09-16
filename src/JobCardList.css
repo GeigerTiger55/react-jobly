@@ -1,0 +1,7 @@
+.JobCardList {
+    height: calc(100vh - 150px);
+    color: #007bff
+}
+.List-cards {
+    padding: 10px
+}

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import userContext from './userContext';
 import { Link } from "react-router-dom";
+import './Homepage.css';
 
 /** Homepage for landing and redirects (presentational)
  *
@@ -19,20 +20,28 @@ function Homepage() {
   //Show links dependent on if user is signed in
   if (userData.username) {
     return (
-      <div>
-        <h1>Jobly</h1>
-        <h4>All the jobs in one, convenient place.</h4>
-        <h1>WelcomeBack, {userData.firstName}</h1>
+      <div className="Homepage">
+        <div className="Homepage-text">
+          <h1>Jobly</h1>
+          <h4>All the jobs in one, convenient place.</h4>
+          <h3>WelcomeBack, {userData.firstName}</h3>
+        </div>
       </div>
     );
   } else {
     return (
-      <div>
-        <h1>Jobly</h1>
-        <h4>All the jobs in one, convenient place.</h4>
-        <div>
-          <Link to='/login' className='btn btn-primary'> Login </Link>
-          <Link to='/signup' className='btn btn-primary'> Sign Up </Link>
+      <div className="Homepage">
+        <div className="Homepage-text">
+          <h1>Jobly</h1>
+          <h4>All the jobs in one, convenient place.</h4>
+          <div>
+            <Link to='/login' className='Homepage-btn btn btn-primary'>
+              Login 
+            </Link>
+            <Link to='/signup' className='Homepage-btn btn btn-primary'>
+              Sign Up 
+            </Link>
+          </div>
         </div>
       </div>
     );

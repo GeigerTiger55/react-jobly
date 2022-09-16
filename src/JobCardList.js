@@ -1,4 +1,5 @@
 import JobCard from './JobCard';
+import './JobCardList.css';
 
 /** JobCardList for displaying jobs
  *
@@ -11,7 +12,7 @@ import JobCard from './JobCard';
  */
 function JobCardList({ jobs }) {
   return (
-    <div>
+    <div className='JobCardList'>
       {jobs.map(job => <JobCard key={job.id} job={job} />)}
     </div>
   );

@@ -1,8 +1,25 @@
 .Nav {
     display: flex;
     justify-content: space-between;
+    background-color: white;
+    padding: 1vw;
+}
+
+.Nav-rightDiv {
+    width: 40vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Nav-Link {
+    padding: 0 1vw;
 }
 
 .Nav-ul {
     list-style: none;
 }
+
+.Nav-link.active {
+    font-weight: bold;
+    color: black;
+  }

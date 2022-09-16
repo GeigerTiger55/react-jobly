@@ -10,12 +10,12 @@ import './App.css';
 /** App for managing a Jobs Board.
  *
  * Props: None
- * TODO: update state docstring info
+ * 
  * State: 
  * - token
- * - userData like {username, firstname, lastname...}
+ * - userData like {username, token}
  *
- * App -> (<Nav/> | <RoutesList/>)
+ * App -> { userContext.Provider, Nav, RoutesList }
  */
 function App() {
   const [token, setToken] = useState(
@@ -72,7 +72,7 @@ function App() {
       email,
     });
     window.localStorage.setItem("jobly-token", token);
-    setToken(window.localStorage.get('jobly-token'));
+    setToken(token);
   }
 
   /** logoutUser - clears all user info
