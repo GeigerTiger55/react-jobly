@@ -11,13 +11,6 @@ https://jobly.demo.elisegeiger.com/
 
 ## To Run
 
-### Start backend server
-
-Download jobly backend code. In the project directory, you can run:
-
-### `python3 -m http.server`
-
-
 ### Start app
 
 In the project directory, you can run:
