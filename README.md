@@ -4,7 +4,9 @@ Jobly is a single page React application of a job board including user accounts 
 
 ## Demo Available
 https://jobly.demo.elisegeiger.com/
+
 username: TestUser
+
 password: password
 
 ## Component Hierarchy
