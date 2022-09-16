@@ -48,33 +48,28 @@ function LoginForm({ loginUser }) {
   }
 
   return (
-
-    //Throw a conditonal checking userLoggedIn via context
-    //If true
-    //return (<Navigate to="/companies"))
     <div>
-
-      {/* TODO: move logic to RoutesList
-      If empty string then resolves false
-      If token is not empty string resolves true? */}
-
       <form onSubmit={handleSubmit}>
-        <p><label htmlFor="username">Username:</label>
+        <p>
+          <label htmlFor="username">Username:</label>
           <input
             id="username"
             name="username"
             value={formData.username}
             onChange={handleChange}
-          /></p>
+          />
+        </p>
 
-        <p><label htmlFor="password">Password:</label>
+        <p>
+          <label htmlFor="password">Password:</label>
           <input
             id="password"
             name="password"
             type="password"
             value={formData.password}
             onChange={handleChange}
-          /></p>
+          />
+        </p>
 
         {errorData.length > 0 && <Alert errors={errorData} />}
 

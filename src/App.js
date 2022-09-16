@@ -1,44 +1,30 @@
-import { BrowserRouter, Navigate } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import RoutesList from './RoutesList';
 import Nav from './Nav';
 import JoblyApi from './api';
 import userContext from './userContext';
-import { TEST_USER } from './testFile';
 import jwt_decode from "jwt-decode";
-
-
 import './App.css';
 
 /** App for managing a Jobs Board.
  *
  * Props: None
-//  * FIXME: Add state
- * State: None
+ * TODO: update state docstring info
+ * State: 
+ * - token
+ * - userData like {username, firstname, lastname...}
  *
  * App -> (<Nav/> | <RoutesList/>)
  */
 function App() {
-
-  //
-
-
-  //FIXME: 2 pieces of state
-  //1.) userData
-  //2.) token
-
-  //TODO: Use determinant to fix ternary
   const [token, setToken] = useState(
     window.localStorage.getItem("jobly-token") || ''
   );
   const [userData, setUserData] = useState({});
-  console.log('App, userData',token,userData);
-  //For testing purposes
-  // JoblyApi.registerUser(TEST_USER);
-  // JoblyApi.loginUser(TEST_USER);
+  console.log('App, token, userData',token,userData);
 
   useEffect(function fetchUserDataOnTokenChange() {
-    //FIXME: jwtDecode library. Decode token and pull out username.
     async function fetchUserData() {
       const username = jwt_decode(token).username;
 
@@ -56,7 +42,6 @@ function App() {
     if (token !== '') {
       fetchUserData();
     }
-    // FIXME:
   }, [token]);
 
   /** loginUser takes an object of {username, password} as argument
@@ -65,7 +50,6 @@ function App() {
   async function loginUser({ username, password }) {
     const token = await JoblyApi.loginUser({ username, password });
     window.localStorage.setItem("jobly-token", token);
-    console.log('Token in local storage',window.localStorage.getItem('jobly-token'));
     setToken(token);
   }
 
@@ -80,27 +64,28 @@ function App() {
     lastName,
     email,
   }) {
-    const token = await JoblyApi.registerUser(
-      // FIXME: Formatting
-      { username, password, firstName, lastName, email }
-    );
+    const token = await JoblyApi.registerUser({ 
+      username, 
+      password, 
+      firstName, 
+      lastName, 
+      email,
+    });
     window.localStorage.setItem("jobly-token", token);
     setToken(window.localStorage.get('jobly-token'));
   }
 
-  // We check if a user is logged in via context
-  // If so on these form pages
-  //We render the <Navigate to="/companies"> component
-
-  /** logoutUser - sets UserData to default userdata */
+  /** logoutUser - clears all user info
+   * - remove token from everywhere
+   * - clear userData
+   */
   function logoutUser() {
     window.localStorage.removeItem("jobly-token");
     setToken('');
-    //Update token state
     setUserData({});
   }
 
-  //TODO: write patch user function
+  //TODO: write patch user function for updating profile
 
   return (
     <userContext.Provider value={{ userData }}>
