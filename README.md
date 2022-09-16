@@ -3,6 +3,8 @@ https://jobly.demo.elisegeiger.com/
 
 ## Component Hierarchy
 
+![react-jobly-component-hierarchy](https://user-images.githubusercontent.com/728518/190701196-f824344b-cadc-43c4-bd3e-a68f6cef7cb8.jpg)
+
 ## To Run
 
 ### Start backend server
