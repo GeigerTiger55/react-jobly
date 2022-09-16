@@ -24,7 +24,7 @@ function Homepage() {
         <div className="Homepage-text">
           <h1>Jobly</h1>
           <h4>All the jobs in one, convenient place.</h4>
-          <h3>WelcomeBack, {userData.firstName}</h3>
+          <h3>Welcome Back, {userData.firstName}</h3>
         </div>
       </div>
     );
