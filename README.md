@@ -1,4 +1,8 @@
-# Jobly Demo Available
+# Jobly 
+
+Jobly is a single page React application of a job board including user accounts with authentication and search functionality.
+
+## Demo Available
 https://jobly.demo.elisegeiger.com/
 
 ## Component Hierarchy
