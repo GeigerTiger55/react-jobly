@@ -17,7 +17,8 @@ password: password
 
 ### Start app
 
-In the project directory, you can run:
+This project requires the Express backend to be downloaded and running on a server.
+To run frontend, in the project directory, you can run:
 
 ### `npm start`
 
