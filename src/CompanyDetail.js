@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import JoblyApi from './api';
 import JobCardList from './JobCardList';
+import './CompanyDetail.css';
 
 /** CompanyDetail shows company info and jobs posted for company
  *
@@ -62,11 +63,11 @@ function CompanyDetail() {
    */
   function displayJobs() {
     if (companyDetails.isLoading) {
-      return <p>loading Jobs</p>;
+      return <p>Loading...</p>;
     } else if (companyDetails.data.jobs.length > 0) {
       return <JobCardList jobs={companyDetails.data.jobs} />;
     } else {
-      return <p>No jobs</p>;
+      return <p>No jobs posted</p>;
     }
 
   }

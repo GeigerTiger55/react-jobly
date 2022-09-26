@@ -1,0 +1,11 @@
+.CompanyDetail {
+    color: #ffffff;
+    text-shadow: 2px 2px 5px #34302f;
+    text-align: left;
+    padding: 10px;
+}
+
+.CompanyDetail-name {
+    font-size: larger;
+    font-weight: bold;
+}
