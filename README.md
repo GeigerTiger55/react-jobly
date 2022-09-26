@@ -5,6 +5,10 @@ Jobly is a single page React application of a job board including user accounts 
 ## Demo Available
 https://jobly.demo.elisegeiger.com/
 
+username: TestUser
+
+password: password
+
 ## Component Hierarchy
 
 ![react-jobly-component-hierarchy](https://user-images.githubusercontent.com/728518/190701196-f824344b-cadc-43c4-bd3e-a68f6cef7cb8.jpg)
@@ -13,7 +17,8 @@ https://jobly.demo.elisegeiger.com/
 
 ### Start app
 
-In the project directory, you can run:
+This project requires the Express backend to be downloaded and running on a server.
+To run frontend, in the project directory, you can run:
 
 ### `npm start`
 
